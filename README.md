@@ -26,8 +26,8 @@ git clone https://github.com/nicoarbelaez/APO2-2023.git
 <img src="https://i.imgur.com/M3JAp7q.png" width="350">
 
 ### Verificar el estado de tus archivos
->Debes ingresar a la carperta del repositorio, con el siguiente comando:
->```
+Debes ingresar a la carperta del repositorio, con el siguiente comando:
+```
 cd [nombre del repositorio]
 ```
 
