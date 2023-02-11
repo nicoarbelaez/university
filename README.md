@@ -14,7 +14,7 @@ git clone [url del repositorio]
 >1. Haz clic en el botón verde "Clone or download".
 >1. Haz clic en el botón "Copy to clipboard" para copiar la URL del repositorio.
 >
-><img src="https://i.imgur.com/fBjIZEa.png" width="350">
+><img src="https://i.imgur.com/fBjIZEa.png" width="400">
 >
 >Ahora puedes utilizar esta URL en el comando git clone para clonar el repositorio en tu computadora.
 
@@ -23,7 +23,7 @@ Por ejemplo, si quieres clonar este repositorio, debes escribir:
 ```
 git clone https://github.com/nicoarbelaez/APO2-2023.git
 ```
-<img src="https://i.imgur.com/M3JAp7q.png" width="350">
+<img src="https://i.imgur.com/M3JAp7q.png" width="400">
 
 ### Verificar el estado de tus archivos
 Debes ingresar a la carperta del repositorio, con el siguiente comando:
@@ -36,7 +36,7 @@ Antes de realizar cambios en tu repositorio local, es recomendable verificar el 
 ```
 git status
 ```
-<img src="https://i.imgur.com/PDslJb8.png" width="350">
+<img src="https://i.imgur.com/PDslJb8.png" width="400">
 
 ### Agregar archivos al repositorio
 Después de realizar cambios en tus archivos, debes agregarlos al repositorio local para poder hacer un commit. Para agregar todos los archivos modificados, escribe el siguiente comando en la terminal:
@@ -44,7 +44,7 @@ Después de realizar cambios en tus archivos, debes agregarlos al repositorio lo
 ```
 git add .
 ```
-<img src="https://i.imgur.com/JyDpEI6.png" width="350">
+<img src="https://i.imgur.com/JyDpEI6.png" width="400">
 
 _Si realizas de nuevo `git status` deberia salir el **modified** en verde._
 
@@ -56,7 +56,7 @@ git commit -m "Mensaje de commit"
 ```
 Reemplaza Mensaje de commit con un mensaje que describa los cambios que has realizado.
 
-<img src="https://i.imgur.com/n7QLWyA.png" width="350">
+<img src="https://i.imgur.com/n7QLWyA.png" width="400">
 
 _Si realizas de nuevo `git status` no deberia aparecer ningun archivo._
 
@@ -71,7 +71,7 @@ git push
 
 Cuando hayas registrado tus credenciales, el commit se habrá subido al repositorio en línea.
 
-<img src="https://i.imgur.com/ogq9iWw.png" width="350">
+<img src="https://i.imgur.com/ogq9iWw.png" width="400">
 
 #### Podrás ver tu commit reflejado en los archivos que subiste en el repositorio, de esta forma.
 <img src="https://i.imgur.com/qYDVezN.png" width="600">
