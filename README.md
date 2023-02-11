@@ -78,8 +78,13 @@ Cuando hayas registrado tus credenciales, el commit se habrá subido al reposito
 
 ## Subir archivos a un repositorio sin clonarlo
 
-1. Asegúrate de tener el repositorio clonado en tu equipo local y estar dentro de la carpeta.
-1. Pegue todos los archivo y/o modifique todo lo que sea necesario.
-1. Vuelva y siga los pasos anteriores [Verificar el estado de tus archivos](#verificar-el-estado-de-tus-archivos)
+1. Asegúrate de estar dentro de la carpeta del repositorio.
+1. Coloca todos los archivos y/o modifica los archivos existentes en la carpeta.
+1. Verifica el estado de tus archivos con el comando `git status`.
+1. Agrega los archivos modificados con el comando `git add .`.
+1. Realiza un commit con el comando `git commit -m "Mensaje de commit"`
+1. Finalmente, envía los cambios al repositorio en línea de GitHub con el comando `git push`.
+
+[Pasos a seguir](#verificar-el-estado-de-tus-archivos)
 
 ###### Espero que esta guía te haya ayudado a entender cómo utilizar Git. ¡Buena suerte con tus proyectos de Git!
