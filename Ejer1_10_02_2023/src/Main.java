@@ -8,7 +8,7 @@ public class Main {
 	
 	public static String ContarPalabras() {
 		Scanner sc = new Scanner(System.in);
-		System.out.print("Ingrese su cadena de texto: ");
+		System.out.print("Ingrese su cadena de texto para contar sus letras: ");
 		String string = sc.next();
 		
 		sc.close();
