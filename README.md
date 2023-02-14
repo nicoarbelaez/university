@@ -9,7 +9,7 @@
 
 ## Índice
 
-- [¿Que es Git?](#¿que-es-git)
+- [¿Que es Git?](#que-es-git)
 - [Requisitos](#requisitos)
 - [Cómo ver si una carpeta tiene Git](#cómo-ver-si-una-carpeta-tiene-git)
   - [Activar la visualización de elementos ocultos](#activar-la-visualización-de-elementos-ocultos)
