@@ -19,7 +19,7 @@ Identifique el término correspondiente a cada una de las definiciones a continu
 
 |Paquete|Un grupo de clases Java relacionadas.|
 | :-: | :- |
-|`	`Bloque de código	|Secciones de código que se escriben entre llaves. {}|
+|Bloque de código	|Secciones de código que se escriben entre llaves. {}|
 |CamelCase|Primera letra mayúscula y mayúscula inicial en la primera letra de cada palabra interna. Ejemplo: CuentaCorriente|
 |Constante|Valor con nombre que no cambia.|
 |camelCase|Primera letra minúscula y mayúscula inicial en la primera letra de cada palabra interna. Ejemplo: nombreEstudiante|
@@ -40,37 +40,37 @@ Identifique el término correspondiente a cada una de las definiciones a continu
 # **Inténtelo/resuélvalo:**
 
 1. Enumere los componentes que forman un archivo .java. Enumere los componentes en el orden en que esperaría verlos en un programa Java.
-   1. Comentarios
-   1. Declaraciones de paquetes (opcional)
-   1. Declaraciones de importación
-   1. Declaración de clase
-   1. Variables de instancia
-   1. Constructor
-   1. Métodos de instancia
-   1. Métodos estáticos
-   1. Variables estáticas
-   1. Método principal (main)
+   - Comentarios
+   - Declaraciones de paquetes (opcional)
+   - Declaraciones de importación
+   - Declaración de clase
+   - Variables de instancia
+   - Constructor
+   - Métodos de instancia
+   - Métodos estáticos
+   - Variables estáticas
+   - Método principal (main)
 
-1. Describa la diferencia entre el formato CamelCase en mayúsculas y en minúsculas y proporcione un ejemplo de cuándo los usaría.
+2. Describa la diferencia entre el formato CamelCase en mayúsculas y en minúsculas y proporcione un ejemplo de cuándo los usaría.
 
-`	`Este formato consiste en escribir palabras compuestas juntas sin espacios y con la primera letra de cada palabra en mayúscula. Hay dos variaciones del formato CamelCase. La primera letra es en mayúscula o minúscula, estas son:
+Este formato consiste en escribir palabras compuestas juntas sin espacios y con la primera letra de cada palabra en mayúscula. Hay dos variaciones del formato CamelCase. La primera letra es en mayúscula o minúscula, estas son:
 
 - UpperCamelCase: También conocido como PascalCase, en este formato, la primera letra de cada palabra se escribe en mayúscula, incluyendo la primera palabra. Ejemplo: "PhoneNumber”, " AccountBalance ". Este formato se usa a menudo para nombrar clases o tipos de datos.
 
 - lowerCamelCase: En este formato, la primera letra de la primera palabra se escribe en minúscula, pero la primera letra de las palabras subsiguientes se escribe en mayúscula. Ejemplo: "phoneNumber", "accountBalance". Este formato se usa a menudo para nombrar variables y métodos.
 
-`	`La diferencia entre ambos formatos es principalmente que UpperCamelCase se utiliza para nombrar clases y tipos de datos, mientras que lowerCamelCase se utiliza para nombrar variables y métodos.
+La diferencia entre ambos formatos es principalmente que UpperCamelCase se utiliza para nombrar clases y tipos de datos, mientras que lowerCamelCase se utiliza para nombrar variables y métodos.
 
 
-1. ¿Qué sintaxis se utiliza para importar todo el paquete de utilidades de Java? Y si importase todo el paquete, ¿también necesitaría importar las clases adicionales en el mismo paquete por separado?
+3. ¿Qué sintaxis se utiliza para importar todo el paquete de utilidades de Java? Y si importase todo el paquete, ¿también necesitaría importar las clases adicionales en el mismo paquete por separado?
 
 Para importar todo el paquete de utilidades de Java, se usa la siguiente sintaxis:
 
-`	`import java.util.\*;
+`import java.util.\*;`
 
 Si se importa todo el paquete utilizando la sintaxis anterior, no es necesario importar las clases adicionales en el mismo paquete por separado, ya que todas las clases del paquete estarán disponibles para su uso.
 
-1. Escriba la sintaxis de una clase de objeto Java simple con el nombre Student y el siguiente formato: 
+4. Escriba la sintaxis de una clase de objeto Java simple con el nombre Student y el siguiente formato: 
 
 Student Name: Lisa Palombo
 
@@ -83,25 +83,25 @@ La información del estudiante se almacenará en las siguientes variables:
 fName, lName, stuId, stuStatus.
 
 
-1. Escriba el código para una clase de controlador que cree un objeto Student y muestre la información sobre el objeto en la pantalla.
+5. Escriba el código para una clase de controlador que cree un objeto Student y muestre la información sobre el objeto en la pantalla.
 
 
-1. Enumere 10 palabras clave de Java de esta lección.
-   1. public
-   1. class
-   1. static
-   1. void
-   1. new
-   1. private
-   1. this
-   1. String
-   1. int
-   1. return
+6. Enumere 10 palabras clave de Java de esta lección.
+   - public
+   - class
+   - static
+   - void
+   - new
+   - private
+   - this
+   - String
+   - int
+   - return
 
-1. Complete la clase de objeto creada por el programador que aparece a continuación. Tenga en cuenta las instrucciones de los comentarios.
+7. Complete la clase de objeto creada por el programador que aparece a continuación. Tenga en cuenta las instrucciones de los comentarios.
 
 ![](https://imgur.com/KaPoFfV.png)
 
-1. Complete la siguiente clase de controlador. Tenga en cuenta las instrucciones de los comentarios.
+8. Complete la siguiente clase de controlador. Tenga en cuenta las instrucciones de los comentarios.
 
 ![](https://imgur.com/0UTkijW.png)
