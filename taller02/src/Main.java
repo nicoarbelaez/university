@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 import PuntoDos.PuntoDos;
 import PuntoTres.PuntoTres;
 import PuntoUno.PuntoUno;
@@ -5,16 +7,25 @@ import PuntoUno.PuntoUno;
 public class Main {
 
 	public static void main(String[] args) {
-		System.out.println("Taller 02");
-		System.out.println("Punto 1");
-		PuntoUno puntoUno = new PuntoUno();
+		Scanner scanner = new Scanner(System.in);
 		
+		System.out.println("*******************");
+		System.out.println("     Taller 02");
+		System.out.println("*******************\n");
+		
+		System.out.println("Punto 1");
+		new PuntoUno(scanner);
+		System.out.println("=========================");
+
 		System.out.println("Punto 2");
-		PuntoDos puntoDos = new PuntoDos();
+		new PuntoDos();
+		System.out.println("=========================");
 
 		System.out.println("Punto 3");
-		PuntoTres puntoTres = new PuntoTres();
-		puntoTres.calcularValor();
+		new PuntoTres(scanner);
+		System.out.println("=========================");
+		
+		scanner.close();
 	}
-	
+
 }
