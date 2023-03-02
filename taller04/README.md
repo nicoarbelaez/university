@@ -52,80 +52,79 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class PuntoDos {
-    
-    public PuntoDos(Scanner scanner) {
-        // Crear un objeto Map para crear un diccionario.
-        Map<String, String> operatorsMap = Map.of(
-          "+", "suma",
-          "-", "resta",
-          "*", "multiplicación",
-          "/", "división",
-          "%", "módulo"
-        );
 
-        // Imprimir los operadores disponibles.
-        System.out.println("Elija un operador ingresando su clave de los siguientes:");
-        // Recorrer el diccionario y mostrar las claves y valores.
-        for (String key : operatorsMap.keySet()) {
-            // Obtener el valor correspondiente a la clave.
-            String value = operatorsMap.get(key);
-            // Imprimir la clave y el valor.
-            System.out.println(key + ": " + value);
-        }
-        
-        // Pedir los números de entrada.
-        
-        System.out.print(">> ");
-        char operator = scanner.next().charAt(0);
-        String operatorNotation = operatorsMap.get(Character.toString(operator));
-        
-        System.out.print("Ingrese el primer número para realizar " + operatorNotation + ": ");
-        double numberOne = scanner.nextDouble();
-        System.out.print("Ingrese el segundo número " + numberOne + " " + operator + " ");
-        double numberTwo = scanner.nextDouble();
-        
-        double result = 0;
-        
-        // Realizar la operación dependiendo del operador ingresado.
-        if (operator == '+') {
-            result = numberOne + numberTwo;
-        } else if (operator == '-') {
-            result = numberOne - numberTwo;
-        } else if (operator == '*') {
-            result = numberOne * numberTwo;
-        } else if (operator == '/') {
-            result = numberOne / numberTwo;
-        } else if (operator == '%') {
-            result = numberOne % numberTwo;
-        } else {
-            System.out.print("Operador no válido: " + operator);
-        }
-        
-        // Utilizar un switch para realizar la operación.
-      //   switch (operator) {
-      //   case '+':
-      //       result = numberOne + numberTwo;
-      //       break;
-      //   case '-':
-      //       result = numberOne - numberTwo;
-      //       break;
-      //   case '*':
-      //       result = numberOne * numberTwo;
-      //       break;
-      //   case '/':
-      //       result = numberOne / numberTwo;
-      //       break;
-      //   case '%':
-      //       result = numberOne % numberTwo;
-      //       break;
-      //   default:
-      //       System.out.print("Operador no válido: " + operator);
-      //   }
-        
-        // Imprimir el resultado de la operación.
-        System.out.println("El resultado de la operación " + operatorNotation + " es:");
-        System.out.println(numberOne + " " + operator + " " + numberTwo + " = " + result);
+  public PuntoDos(Scanner scanner) {
+    // Crear un objeto Map para crear un diccionario.
+    Map<String, String> operatorsMap = Map.of(
+        "+", "suma",
+        "-", "resta",
+        "*", "multiplicación",
+        "/", "división",
+        "%", "módulo");
+
+    // Imprimir los operadores disponibles.
+    System.out.println("Elija un operador ingresando su clave de los siguientes:");
+    // Recorrer el diccionario y mostrar las claves y valores.
+    for (String key : operatorsMap.keySet()) {
+      // Obtener el valor correspondiente a la clave.
+      String value = operatorsMap.get(key);
+      // Imprimir la clave y el valor.
+      System.out.println(key + ": " + value);
     }
+
+    // Pedir los números de entrada.
+
+    System.out.print(">> ");
+    char operator = scanner.next().charAt(0);
+    String operatorNotation = operatorsMap.get(Character.toString(operator));
+
+    System.out.print("Ingrese el primer número para realizar " + operatorNotation + ": ");
+    double numberOne = scanner.nextDouble();
+    System.out.print("Ingrese el segundo número " + numberOne + " " + operator + " ");
+    double numberTwo = scanner.nextDouble();
+
+    double result = 0;
+
+    // Realizar la operación dependiendo del operador ingresado.
+    if (operator == '+') {
+      result = numberOne + numberTwo;
+    } else if (operator == '-') {
+      result = numberOne - numberTwo;
+    } else if (operator == '*') {
+      result = numberOne * numberTwo;
+    } else if (operator == '/') {
+      result = numberOne / numberTwo;
+    } else if (operator == '%') {
+      result = numberOne % numberTwo;
+    } else {
+      System.out.print("Operador no válido: " + operator);
+    }
+
+    // Utilizar un switch para realizar la operación.
+    // switch (operator) {
+    // case '+':
+    // result = numberOne + numberTwo;
+    // break;
+    // case '-':
+    // result = numberOne - numberTwo;
+    // break;
+    // case '*':
+    // result = numberOne * numberTwo;
+    // break;
+    // case '/':
+    // result = numberOne / numberTwo;
+    // break;
+    // case '%':
+    // result = numberOne % numberTwo;
+    // break;
+    // default:
+    // System.out.print("Operador no válido: " + operator);
+    // }
+
+    // Imprimir el resultado de la operación.
+    System.out.println("El resultado de la operación " + operatorNotation + " es:");
+    System.out.println(numberOne + " " + operator + " " + numberTwo + " = " + result);
+  }
 }
 
 ```
@@ -156,62 +155,62 @@ package puntoCuatro;
 import java.util.Scanner;
 
 public class PuntoCuatro {
-	
-	public PuntoCuatro(Scanner scanner) {
-        double earthWeight, conversionFactor, planetWeight;
-        int option;
 
-        // Pedir el peso del usuario en la Tierra
-        System.out.print("Ingrese su peso en la Tierra (en libras): ");
-        earthWeight = scanner.nextDouble();
+  public PuntoCuatro(Scanner scanner) {
+    double earthWeight, conversionFactor, planetWeight;
+    int option;
 
-        // Mostrar menú de planetas
-        System.out.println("Seleccione un planeta del sistema solar:");
-        System.out.println("1. Mercurio");
-        System.out.println("2. Venus");
-        System.out.println("3. Marte");
-        System.out.println("4. Júpiter");
-        System.out.println("5. Saturno");
-        System.out.println("6. Urano");
-        System.out.println("7. Neptuno");
+    // Pedir el peso del usuario en la Tierra
+    System.out.print("Ingrese su peso en la Tierra (en libras): \n>> ");
+    earthWeight = scanner.nextDouble();
 
-        // Pedir la opción seleccionada por el usuario
-        System.out.print("Ingrese la opción deseada: ");
-        option = scanner.nextInt();
+    // Mostrar menú de planetas
+    System.out.println("Seleccione un planeta del sistema solar:");
+    System.out.println("1. Mercurio");
+    System.out.println("2. Venus");
+    System.out.println("3. Marte");
+    System.out.println("4. Júpiter");
+    System.out.println("5. Saturno");
+    System.out.println("6. Urano");
+    System.out.println("7. Neptuno");
 
-        // Calcular el peso en el planeta seleccionado
-        String planeta = "";
-        if (option == 1) {
-            conversionFactor = 0.38;
-            planeta = "Mercurio";
-        } else if (option == 2) {
-            conversionFactor = 0.91;
-            planeta = "Venus";
-        } else if (option == 3) {
-            conversionFactor = 0.38;
-            planeta = "Marte";
-        } else if (option == 4) {
-            conversionFactor = 2.36;
-            planeta = "Júpiter";
-        } else if (option == 5) {
-            conversionFactor = 0.92;
-            planeta = "Saturno";
-        } else if (option == 6) {
-            conversionFactor = 0.89;
-            planeta = "Urano";
-        } else if (option == 7) {
-            conversionFactor = 1.13;
-            planeta = "Neptuno";
-        } else {
-            System.out.println("Opción inválida");
-            return;
-        }
+    // Pedir la opción seleccionada por el usuario
+    System.out.print("Ingrese la opción deseada: ");
+    option = scanner.nextInt();
 
-        planetWeight = earthWeight * conversionFactor;
-
-        // Mostrar el peso en el planeta seleccionado
-        System.out.printf("Your weight on %s is %.2f lbs.", planeta, planetWeight);
+    // Calcular el peso en el planeta seleccionado
+    String planeta = "";
+    if (option == 1) {
+      conversionFactor = 0.38;
+      planeta = "Mercurio";
+    } else if (option == 2) {
+      conversionFactor = 0.91;
+      planeta = "Venus";
+    } else if (option == 3) {
+      conversionFactor = 0.38;
+      planeta = "Marte";
+    } else if (option == 4) {
+      conversionFactor = 2.36;
+      planeta = "Júpiter";
+    } else if (option == 5) {
+      conversionFactor = 0.92;
+      planeta = "Saturno";
+    } else if (option == 6) {
+      conversionFactor = 0.89;
+      planeta = "Urano";
+    } else if (option == 7) {
+      conversionFactor = 1.13;
+      planeta = "Neptuno";
+    } else {
+      System.out.println("Opción inválida");
+      return;
     }
+
+    planetWeight = earthWeight * conversionFactor;
+
+    // Mostrar el peso en el planeta seleccionado
+    System.out.printf("Your weight on %s is %.2f lbs.", planeta, planetWeight);
+  }
 }
 
 ```
@@ -229,34 +228,41 @@ package puntoCinco;
 import java.util.Scanner;
 
 public class PuntoCinco {
-	
-	public PuntoCinco(Scanner scanner) {
 
-        // Pedir información al usuario
-        System.out.print("¿Cuál es la posición de notas esta el estudiante en su institución (1 para la más alta, 2 para la segunda más alta, 0 en otro caso)? ");
-        int calification = scanner.nextInt();
+  public PuntoCinco(Scanner scanner) {
 
-        System.out.print("¿Cuál es la nota media del estudiante? ");
-        double averageNote = scanner.nextDouble();
-
-        System.out.print("¿Cuál es la puntuación SAT del estudiante? ");
-        int satScore = scanner.nextInt();
-
-        String textAdmission = "El estudiante cumple los requisitos para ingresar en la Universidad de Mountville.";
-
-        // Comprobar si el estudiante cumple los requisitos
-        if (calification == 1 || calification == 2) {
-            System.out.println(textAdmission);
-        } else if (averageNote >= 4.0 && satScore >= 1100) {
-            System.out.println(textAdmission);
-        } else if (averageNote >= 3.5 && satScore >= 1300) {
-            System.out.println(textAdmission);
-        } else if (averageNote >= 3.0 && satScore >= 1500) {
-            System.out.println(textAdmission);
-        } else {
-            System.out.println("El estudiante no cumple los requisitos para ingresar en la Universidad de Mountville.");
-        }
+    // Pedir información al usuario
+    System.out.print(
+        "¿Cuál es la posición de notas esta el estudiante en su institución (1 para la más alta, 2 para la segunda más alta, 0 en otro caso)? \n>> ");
+    int calification = scanner.nextInt();
+    System.out.println("¿Cuál es el número de alumnos en el instituto? \n>> ");
+    int numberStudents = scanner.nextInt();
+    
+    if (!(calification == 1 || calification == 2) || numberStudents < 1400) {
+      System.out.println( 
+          "El estudiante no cumple el requisito de haber sido el estudiante con la clasificación más alta o la segunda más alta de un instituto con un número de alumnos igual o superior a 1400.");
+      return;
     }
+
+    // Comprobar si el estudiante cumple los requisitos
+    System.out.print("¿Cuál es la nota media del estudiante? \n>> ");
+    double averageNote = scanner.nextDouble();
+
+    System.out.print("¿Cuál es la puntuación SAT del estudiante? \n>> ");
+    int satScore = scanner.nextInt();
+
+    String textAdmission = "El estudiante cumple los requisitos para ingresar en la Universidad de Mountville.";
+
+    if (averageNote >= 4.0 && satScore >= 1100) {
+      System.out.println(textAdmission + "(2)");
+    } else if (averageNote >= 3.5 && satScore >= 1300) {
+      System.out.println(textAdmission + "(3)");
+    } else if (averageNote >= 3.0 && satScore >= 1500) {
+      System.out.println(textAdmission + "(4)");
+    } else {
+      System.out.println("El estudiante no cumple los requisitos para ingresar en la Universidad de Mountville.");
+    }
+  }
 }
 
 ```
@@ -314,26 +320,33 @@ package puntoSeis;
 import java.util.Scanner;
 
 public class PuntoSeis {
-	
-	public PuntoSeis(Scanner scanner) {
-        double average;
-        int daysAbsent;
-        System.out.println("This program will determine if you can get out of the final exam.");
-        System.out.println("Please answer the following questions.");
 
-        System.out.println("What is your average in the class?");
-        average = scanner.nextDouble();
+  public PuntoSeis(Scanner scanner) {
+    double average;
+    int daysAbsent;
+    System.out.println("This program will determine if you can get out of the final exam.");
+    // Este programa determinará si puedes salir del examen final.
+    System.out.println("Please answer the following questions.");
+    // Por favor, conteste a las siguientes preguntas.
 
-        System.out.println("How many class lectures have you missed?");
-        daysAbsent = scanner.nextInt();
+    System.out.print("What is your average in the class? \n>> ");
+    // ¿Cuál es su promedio en la clase?
+    average = scanner.nextDouble();
 
-        if ((average >= 90 && daysAbsent <= 3) || (average >= 80 && daysAbsent == 0)) {
-        	System.out.println("Congratulations! You are exempt from the final exam.");
-        } else {
-            System.out.println("Sorry, you are not exempt from the final exam.");
-        }
+    System.out.print("How many class lectures have you missed? \n>> ");
+    // ¿Cuántas clases ha perdido?
+    daysAbsent = scanner.nextInt();
+
+    if ((average >= 90 && daysAbsent <= 3) || (average >= 80 && daysAbsent == 0)) {
+      System.out.println("Congratulations! You are exempt from the final exam.");
+      // ¡Felicidades! Estás exento del examen final.
+    } else {
+      System.out.println("Sorry, you are not exempt from the final exam.");
+      // Lo siento, no estás exento del examen final.
     }
+  }
 }
+
 ```
 
 7. Escriba un programa que calcule el número de botes de pintura necesarios para pintar una habitación y el número óptimo de botes que debe comprar.
@@ -344,5 +357,54 @@ public class PuntoSeis {
    - El bote de 1 litro cuesta 4 $ y es suficiente para pintar 300 pies cuadrados.
 
 ```java
+package puntoSiete;
+
+import java.util.Scanner;
+
+public class PuntoSiete {
+
+  public PuntoSiete(Scanner input) {
+    double height, length, width;
+    double totalArea, priceOneLiter, priceFiveLiter;
+    int quantityOfFiveLiter, quantityOfOneLiter, optimalOneLiter, optimalFiveLiter;
+    double oneLiterPrice = 4.0, fiveLiterPrice = 15.0;
+    double oneLiterArea = 300, fiveLiterArea = 1500;
+
+    // Pedir las dimensiones de la habitación
+    System.out.print("Por favor, introduzca la altura de la habitación en pies: \n>> ");
+    height = input.nextDouble();
+
+    System.out.print("Por favor, introduzca la longitud de la habitación en pies: \n>> ");
+    length = input.nextDouble();
+
+    System.out.print("Por favor, introduzca el ancho de la habitación en pies: \n>> ");
+    width = input.nextDouble();
+
+    // Calcular el área total de la habitación
+    totalArea = (2 * height * length) + (2 * height * width);
+
+    quantityOfOneLiter = (int) Math.round(totalArea / oneLiterArea);
+    quantityOfFiveLiter = (int) Math.round(totalArea / fiveLiterArea);
+
+    optimalOneLiter = (int) Math.ceil((totalArea % fiveLiterArea) / oneLiterArea);
+    optimalFiveLiter = (int) (Math.floor(totalArea / fiveLiterArea));
+
+    priceOneLiter = optimalOneLiter * oneLiterPrice;
+    priceFiveLiter = optimalFiveLiter * fiveLiterPrice;
+
+    // Imprimir los resultados
+    System.out.println("Para pintar una habitación de " + height + " pies de alto, " + length
+        + " pies de largo y " + width + " pies de ancho:");
+    System.out.println("(Area total: " + totalArea + " pies cuadrados)\n");
+
+    System.out.print("Se necesitan " + quantityOfOneLiter + " botes de pintura de 1 litro, o ");
+    System.out.println(quantityOfFiveLiter + " botes de 5 litros.");
+    System.out.println(">> Para un resultado mas óptimo, se recomienda comprar " + optimalOneLiter
+        + " botes de 1 litro y " + optimalFiveLiter + " botes de 5 litros.");
+    System.out
+        .println(">> El precio total de los botes de pintura es de $" + priceOneLiter + " por los botes de 1 litro y $"
+            + priceFiveLiter + " por los botes de 5 litros. Total: $" + (priceOneLiter + priceFiveLiter));
+  }
+}
 
 ```

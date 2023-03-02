@@ -15,7 +15,7 @@ public class Main {
     System.out.println("     Taller 04");
     System.out.println("*******************\n");
 
-    System.out.print("Todos los puntos del taller 04, cual desea ejecutar? (1-7) \n>>");
+    System.out.print("Todos los puntos del taller 04, cual desea ejecutar? (1-7) \n>> ");
     int workshopPoint = scanner.nextInt();
 
     while (true) {
@@ -58,7 +58,7 @@ public class Main {
         }
 
         System.out.println("\n**********************************n");
-        System.out.print("Todos los puntos del taller 04, cual desea ejecutar? (1-7). 0 para salir. \n>>");
+        System.out.print("Todos los puntos del taller 04, cual desea ejecutar? (1-7). 0 para salir. \n>> ");
         workshopPoint = scanner.nextInt();
 
         if (workshopPoint == 0) {
@@ -67,7 +67,7 @@ public class Main {
         }
 
       } else {
-        System.out.print("Opcion no valida, por favor ingrese un numero entre 1 y 7 \n>>");
+        System.out.print("Opcion no valida, por favor ingrese un numero entre 1 y 7 \n>> ");
         workshopPoint = scanner.nextInt();
       }
     }
