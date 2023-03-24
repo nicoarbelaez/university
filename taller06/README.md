@@ -1,4 +1,4 @@
-﻿![](https://imgur.com/DTwwCeI.png) ![](https://imgur.com/Erd7DXs.png)
+![](https://imgur.com/DTwwCeI.png) ![](https://imgur.com/Erd7DXs.png)
 
 ![](https://imgur.com/F7J0Q1r.png)
 
@@ -242,22 +242,29 @@ public class PointSeven {
    Para obtener la respuesta, se toma la fila de la primera arreglo y la columna de la segunda arreglo y se multiplican los respectivos valores y, luego, se toma la suma de los resultados.
 
    La respuesta anterior se obtuvo de la siguiente manera:
-   $$
-   3(1)+4(-2)=-5 3(0)+4(3)=12
-   $$
-   $$
-   5(1)+6(-2)=-7 5(0)+6(3)=18
-   $$
-   Escriba un programa que tome dos arreglas y, luego, permita al usuario elegir sumar, restar o multiplicar y mostrar la respuesta. El programa mostrará el siguiente menú:
 
-   1.  Enter Arreglo A
-   1.  Enter Arreglo B
-   1.  Display A + B
-   1.  Display A - B
-   1.  Display A \* B
-   1.  Exit
+$$
+\begin{align}
+3(1)+4(-2)=-5 3(0)+4(3)=12
+\end{align}
+$$
 
-   El programa debe mostrar un ciclo y permitir al usuario continuar eligiendo diferentes opciones hasta que eligen salir. El programa bien escrito colocará en módulos el proceso en métodos diferentes.
+$$
+\begin{align}
+5(1)+6(-2)=-7 5(0)+6(3)=18
+\end{align}
+$$
+
+Escriba un programa que tome dos arreglas y, luego, permita al usuario elegir sumar, restar o multiplicar y mostrar la respuesta. El programa mostrará el siguiente menú:
+
+1.  Enter Arreglo A
+1.  Enter Arreglo B
+1.  Display A + B
+1.  Display A - B
+1.  Display A \* B
+1.  Exit
+
+El programa debe mostrar un ciclo y permitir al usuario continuar eligiendo diferentes opciones hasta que eligen salir. El programa bien escrito colocará en módulos el proceso en métodos diferentes.
 
 9. Escriba el código y prueba. Añadir las siguientes características.
    1. Agregue un método para mezclar a la clase Deck. Llame al método desde la clase Main (principal) para verificar que el mazo esté verdaderamente mezclado.
@@ -318,9 +325,9 @@ public class Card {
     int points;
 
     Card(int n1, int\*\* n2){ suit = getSuit(n1); name = getName(n2);
-    
+
     points = getPoints(name);
-    
+
     }
 
     public String toString() {
