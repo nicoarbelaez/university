@@ -1,7 +1,7 @@
 package pointFour;
 
 public class PointFour {
-    public int num = 5;
+    public int num = 10;
 
     public PointFour() {
         System.out.println(toString());
