@@ -1,6 +1,14 @@
 package main.java.com.nicolasarb.parcial03.interfaces;
 
 public interface ISpacecraft {
+
+	/**
+	 * Maneja el buffer de entrada de datos que aun no se ha procesado.
+	 * 	
+	 * @param sc
+	 */
+	void inputData();
+
 	/**
 	* Calcular la velocidad de la nave espacial.
 	*

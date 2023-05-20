@@ -16,34 +16,51 @@ public class Inventory {
 		this.sc = sc;
 	}
 
+	private boolean isEmptySpacecraftList() {
+		if (spacecraftList.isEmpty()) {
+			System.out.println(ColorConstant.RED);
+			System.out.println("There is no registered spacecraft");
+			System.out.println(ColorConstant.RESET);
+			return true;
+		}
+		return false;
+	}
+
 	public void addItem() {
 		System.out.println("+---------------------------------+");
 		System.out.println("|     Spaceship inventory ADD     |");
 		System.out.println("+---------------------------------+");
+		System.out.println("Spaceship conut: " + spacecraftList.size());
 		System.out.println("[1] Shuttle vehicles");
 		System.out.println("[2] Unmanned spacecraft");
 		System.out.println("[3] Manned spacecraft");
+		System.out.println("[4] Test");
 		System.out.println("[0] Return");
 		System.out.print(">> ");
 
 		int option = sc.nextInt();
 
 		switch (option) {
-		case 1:
-			spacecraftList.add(new ShuttleVehicles());
-			break;
-		case 2:
-			spacecraftList.add(new UnmannedSpacecraft());
-			break;
-		case 3:
-			spacecraftList.add(new MannedSpacecraft(1, 2));
-			break;
-		case 0:
-			System.out.println("Returning to the main menu...");
-			break;
-		default:
-			this.addItem();
-			break;
+			case 1:
+				spacecraftList.add(new ShuttleVehicles(this.sc));
+				break;
+			case 2:
+				spacecraftList.add(new UnmannedSpacecraft(this.sc));
+				break;
+			case 3:
+				spacecraftList.add(new MannedSpacecraft(this.sc));
+				break;
+			case 4:
+				spacecraftList.add(new ShuttleVehicles(true, this.sc));
+				spacecraftList.add(new UnmannedSpacecraft(true, this.sc));
+				spacecraftList.add(new MannedSpacecraft(true, this.sc));
+				break;
+			case 0:
+				System.out.println("Returning to the main menu...");
+				break;
+			default:
+				this.addItem();
+				break;
 
 		}
 	}
@@ -52,31 +69,65 @@ public class Inventory {
 		System.out.println("+------------------------------------+");
 		System.out.println("|     Spaceship inventory REMOVE     |");
 		System.out.println("+------------------------------------+");
-		spacecraftList.remove(1);
+		if (isEmptySpacecraftList())
+			return;
+
+		System.out.println("Please enter the ID of the spacecraft you want to remove");
+		System.out.print(">> ");
+		int id = sc.nextInt();
+		for (Spacecraft spacecraft : spacecraftList) {
+			if (spacecraft.getId() == id) {
+				System.out.print("Are you sure you want to remove the spacecraft with the ID " + id + "? [Y/N] ");
+				String option = sc.next().charAt(0) + "";
+				if (option.equalsIgnoreCase("Y")) {
+					spacecraftList.remove(spacecraft);
+					System.out.println("The spacecraft with the ID " + id + " has been removed");
+				}
+				return;
+			}
+		}
+		System.out.println("The spacecraft with the ID " + id + " does not exist");
 	}
 
 	public void searchItem() {
+		System.out.println("+------------------------------------+");
+		System.out.println("|     Spaceship inventory SEARCH     |");
+		System.out.println("+------------------------------------+");
+		if (isEmptySpacecraftList())
+			return;
+
+		System.out.println("Please enter the ID or name of the spacecraft you want to search");
+		System.out.print(">> ");
+		String search = sc.next();
+		for (Spacecraft spacecraft : spacecraftList) {
+			if (spacecraft.getId() == Integer.parseInt(search) || spacecraft.getName().contains(search)) {
+				System.out.println(spacecraft.toString());
+				return;
+			}
+		}
+		System.out.println("The spacecraft with the ID or name " + search + " does not exist");
 	}
 
 	public String toString() {
-	    if (spacecraftList.isEmpty()) {
-	        return "There is no registered spacecraft";
-	    }
+		System.out.println("+------------------------------------+");
+		System.out.println("|     Spaceship inventory SEARCH     |");
+		System.out.println("+------------------------------------+");
+		if (isEmptySpacecraftList())
+			return "";
 
-	    StringBuilder sb = new StringBuilder();
-	    sb.append("+-").append("-".repeat(10)).append("-+-").append("-".repeat(15)).append("-+---------------------+\n");
-	    sb.append("| ").append(String.format("%-10s", "ID")).append(" | ").append(String.format("%-15s", "Date")).append(" | Name                |\n");
-	    sb.append("+-").append("-".repeat(10)).append("-+-").append("-".repeat(15)).append("-+---------------------+\n");
+		String strTemplate = "+------------+-------------------+---------------------+\n";
+		strTemplate += "|     ID     |       Date        |         Name        |\n";
+		strTemplate += "+------------+-------------------+---------------------+\n";
 
-	    for (Spacecraft spacecraft : spacecraftList) {
-	        sb.append("| ").append(String.format("%-10s", spacecraft.getId())).append(" | ")
-	                .append(String.format("%-15s", spacecraft.getDateOfActivity())).append(" | ")
-	                .append(String.format("%-20s", spacecraft.getName())).append(" |\n");
-	    }
+		for (Spacecraft spacecraft : spacecraftList) {
+			strTemplate += "| " + String.format("%-10s", spacecraft.getId()) + " | " +
+					String.format("%-17s", spacecraft.getDateOfActivity()) + " | " +
+					String.format("%-20s", spacecraft.getName()) + " |\n";
+		}
 
-	    sb.append("+-").append("-".repeat(10)).append("-+-").append("-".repeat(15)).append("-+---------------------+\n");
+		strTemplate += "+------------+-------------------+---------------------+\n";
 
-	    return sb.toString();
+		return strTemplate;
 	}
 
 }

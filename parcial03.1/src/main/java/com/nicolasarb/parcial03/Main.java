@@ -9,28 +9,36 @@ public class Main {
 		try (Scanner sc = new Scanner(System.in)) {
 			inventory = new Inventory(sc);
 			while (true) {
-				consoleClear();
+				// consoleClear();
 				titleMenu();
 				int option = sc.nextInt();
-				consoleClear();
+				// consoleClear();
 				switch (option) {
 				case 1:
+				System.out.println(ColorConstant.GREEN);
 					inventory.addItem();
+					System.out.println(ColorConstant.RESET);
 					break;
 				case 2:
+				System.out.println(ColorConstant.RED);
 					inventory.removeItem();
+					System.out.println(ColorConstant.RESET);
 					break;
 				case 3:
-					System.out.println(inventory.toString());
-					break;
+				System.out.println(ColorConstant.CYAN);
+				System.out.println(inventory.toString());
+				System.out.println(ColorConstant.RESET);
+				break;
 				case 4:
+				System.out.println(ColorConstant.YELLOW);
 					inventory.searchItem();
+					System.out.println(ColorConstant.RESET);
 					break;
 				case 0:
 				default:
 					consoleClear();
 					System.out.println("Exiting...");
-					//System.exit(0);
+					System.exit(0);
 					break;
 				}
 
@@ -43,7 +51,7 @@ public class Main {
 
 	private static void titleMenu() {
 		System.out.println("+------------------------------+");
-		System.out.println("|     Spaceship inventory     |");
+		System.out.println("|     Spaceship inventory      |");
 		System.out.println("+------------------------------+");
 		System.out.println("[1] Add spaceship");
 		System.out.println("[2] Delete spaceship");
