@@ -1,0 +1,326 @@
+// ___  ___      _       
+// |  \/  |     (_)      
+// | .  . | __ _ _ _ __  
+// | |\/| |/ _` | | '_ \ 
+// | |  | | (_| | | | | |
+// \_|  |_/\__,_|_|_| |_|
+public class Main {
+
+    private static Player[] players = new Player[2];
+
+    public static void main(String[] args) {
+
+        players[0] = new Player("Player 1");
+        players[1] = new Player("Player 2");
+
+        System.out.print(ConsoleColorPalette.GREEN); // Cambiar color de la consola
+        // Solicitar el número de partidas a jugar
+        System.out.print("\n¿Cuántas partidas quieres jugar?\n>> ");
+        int gamesToPlay = test();
+
+        Game[] games = new Game[gamesToPlay]; // Array de partidas
+
+        // Crear e iniciar cada partida
+        for (int i = 0; i < games.length; i++) {
+            games[i] = new Game(players); // Instanciar cada elemento del array con 2 jugadores
+            games[i].start(); // Iniciar partida actual del array
+            System.out.println(games[i]);
+        }
+        System.out.println(printInfo());
+
+        // Seleccionar una partida aleatoria para ver
+        System.out.print("¿Qué partida quieres ver?\n>> ");
+        int gameToSee = randomGame(games.length);
+        System.out.println(games[gameToSee]);
+    }
+
+    // Generar un número aleatorio para las pruebas
+    private static int test() {
+        int random = (int) (Math.random() * 100) + 1;
+        System.out.println(random);
+        return random;
+    }
+
+    // Generar una partida aleatoria para ver
+    private static int randomGame(int sizeGame) {
+        int random = (int) (Math.random() * sizeGame);
+        System.out.println(random);
+        return random;
+    }
+
+    // Imprimir información general
+    private static String printInfo() {
+        String str = ConsoleColorPalette.BLUE + "\n\n+----------------------------------------------+\n"
+                + "| PIEDRA 🪨, PAPEL 📄 O TIJERA ✂️ | ESTADÍSTICAS |\n"
+                + "+----------------------------------------------+\n"
+                + players[0].toString() + "\n"
+                + players[1].toString() + "\n"
+                + "+---------------------+\n"
+                + "| Partidas jugadas: " + Game.getNumberOfGames() + "\n"
+                + "| Empates: " + Game.getGamesTied() + "\n"
+                + "+---------------------+";
+        return str;
+    }
+}
+
+// _____                      
+// |  __ \                     
+// | |  \/ __ _ _ __ ___   ___ 
+// | | __ / _` | '_ ` _ \ / _ \
+// | |_\ \ (_| | | | | | |  __/
+//  \____/\__,_|_| |_| |_|\___|
+class Game {
+
+    private static int numberOfGames = 0; // Contador de partidas
+    private static int gamesTied = 0; // Contador de empates
+
+    // Constantes de movimiento
+    public static final byte ROCK = 0;
+    public static final byte PAPER = 1;
+    public static final byte SCISSORS = 2;
+
+    private int gameID;
+    private Player winner;
+    private String moves;
+    private Player[] players;
+
+    public Game(Player[] players) {
+        gameID = Game.getNumberOfGames();
+        Game.numberOfGames++;
+        this.players = players;
+    }
+
+    public void start() {
+        byte movePlayer1 = players[0].play();
+        byte movePlayer2 = players[1].play();
+
+        setMoves(movePlayer1, movePlayer2);
+
+        if (movePlayer1 == movePlayer2) {
+            Game.gamesTied++;
+            return;
+        }
+
+        determineWinner(movePlayer1, movePlayer2);
+    }
+
+    public String toString() {
+        String winnerInfo = getWinner();
+        String movesInfo = "[" + getMoves() + "]";
+        String str = "+---Partida #" + gameID + "--------------------------+\n"
+                + "| Ganador: " + winnerInfo + "\n"
+                + "| " + movesInfo + "\n"
+                + "+----------------------------------------+";
+
+        return str;
+    }
+
+    /**
+     * PIEDRA(0) / PAPEL(1) = PAPEL(1)
+     * PIEDRA(0) / TIJERA(2) = PIEDRA(0)
+     * PAPEL(1) / TIJERA(2) = TIJERA(2)
+     */
+    private void determineWinner(byte movePlayer1, byte movePlayer2) {
+        winner = (3 + movePlayer1 - movePlayer2) % 3 == 1 ? players[0] : players[1];
+        winner.addWin();
+    }
+
+    // Getters y Setters
+    public String getWinner() {
+        String winner = "";
+        if (this.winner == null) {
+            winner = "Ninguno";
+        } else {
+            winner = this.winner.getName();
+        }
+        return winner;
+    }
+
+    public void setWinner(Player winner) {
+        this.winner = winner;
+    }
+
+    public int getGameID() {
+        return gameID;
+    }
+
+    public void setGameID(int gameID) {
+        this.gameID = gameID;
+    }
+
+    public void setMoves(byte movePlayer1, byte movePlayer2) {
+        this.moves = players[0].getName() + "<" + Game.showPlay(movePlayer1) + "> VS " + players[1].getName() + "<"
+                + Game.showPlay(movePlayer2) + ">";
+    }
+
+    public String getMoves() {
+        return moves;
+    }
+
+    public void setPlayers(Player[] players) {
+        this.players = players;
+    }
+
+    public Player[] getPlayers() {
+        return players;
+    }
+
+    public static String showPlay(byte move) {
+        String str = "";
+        switch (move) {
+            case Game.ROCK:
+                str = "Piedra";
+                break;
+            case Game.PAPER:
+                str = "Papel";
+                break;
+            case Game.SCISSORS:
+                str = "Tijeras";
+                break;
+        }
+        return str;
+    }
+
+    // Static Getters
+    public static int getNumberOfGames() {
+        return numberOfGames;
+    }
+
+    public static int getGamesTied() {
+        return gamesTied;
+    }
+}
+             
+//  ______ _                       
+//  | ___ \ |                      
+//  | |_/ / | __ _ _   _  ___ _ __ 
+//  |  __/| |/ _` | | | |/ _ \ '__|
+//  | |   | | (_| | |_| |  __/ |   
+//  \_|   |_|\__,_|\__, |\___|_|   
+//                  __/ |          
+//                 |___/  
+class Player {
+
+    private int gamesWon = 0; // Partidas ganadas
+    private int rockCount = 0;
+    private int paperCount = 0;
+    private int scissorsCount = 0;
+    private byte lastMovement;
+    private String name = "Player";
+
+    public Player() {
+    }
+
+    public Player(String name) {
+        this.name = name;
+    }
+
+    public byte play() {
+        byte random = (byte) (Math.random() * 3);
+        updateCounts(random);
+        return random;
+    }
+
+    public void addWin() {
+        gamesWon++;
+    }
+
+    private void updateCounts(byte move) {
+        switch (move) {
+            case Game.ROCK:
+                rockCount++;
+                break;
+            case Game.PAPER:
+                paperCount++;
+                break;
+            case Game.SCISSORS:
+                scissorsCount++;
+                break;
+        }
+    }
+
+    public String toString() {
+        String str = "+-----------------------+\n"
+                + "| " + name + "\n"
+                + "| > Ganadas: " + gamesWon + "\n"
+                + "| >> Piedra: " + rockCount + "\n"
+                + "| >> Papel: " + paperCount + "\n"
+                + "| >> Tijeras: " + scissorsCount + "\n"
+                + "+-----------------------+";
+        return str;
+    }
+
+    // Getters y Setters
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getGamesWon() {
+        return gamesWon;
+    }
+
+    public void setGamesWon(int gamesWon) {
+        this.gamesWon = gamesWon;
+    }
+
+    public int getRockCount() {
+        return rockCount;
+    }
+
+    public void setRockCount(int rockCount) {
+        this.rockCount = rockCount;
+    }
+
+    public int getPaperCount() {
+        return paperCount;
+    }
+
+    public void setPaperCount(int paperCount) {
+        this.paperCount = paperCount;
+    }
+
+    public int getScissorsCount() {
+        return scissorsCount;
+    }
+
+    public void setScissorsCount(int scissorsCount) {
+        this.scissorsCount = scissorsCount;
+    }
+
+    public byte getLastMovement() {
+        return lastMovement;
+    }
+
+    public void setLastMovement(byte lastMovement) {
+        this.lastMovement = lastMovement;
+    }
+
+}
+
+//  _____                       _      _____       _           ______     _      _   _       
+// /  __ \                     | |    /  __ \     | |          | ___ \   | |    | | | |      
+// | /  \/ ___  _ __  ___  ___ | | ___| /  \/ ___ | | ___  _ __| |_/ /_ _| | ___| |_| |_ ___ 
+// | |    / _ \| '_ \/ __|/ _ \| |/ _ \ |    / _ \| |/ _ \| '__|  __/ _` | |/ _ \ __| __/ _ \
+// | \__/\ (_) | | | \__ \ (_) | |  __/ \__/\ (_) | | (_) | |  | | | (_| | |  __/ |_| ||  __/
+//  \____/\___/|_| |_|___/\___/|_|\___|\____/\___/|_|\___/|_|  \_|  \__,_|_|\___|\__|\__\___|
+class ConsoleColorPalette {
+    public final static String BLACK = "\033[30m";
+    public final static String RED = "\033[31m";
+    public final static String GREEN = "\033[32m";
+    public final static String YELLOW = "\033[33m";
+    public final static String BLUE = "\033[34m";
+    public final static String PURPLE = "\033[35m";
+    public final static String CYAN = "\033[36m";
+    public final static String WHITE = "\033[37m";
+    public final static String RESET = "\u001B[0m";
+  
+    public static void clearConsole() {
+      System.out.print("\033[H\033[2J");
+      System.out.flush();
+    }
+  }
+  

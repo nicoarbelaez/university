@@ -6,8 +6,8 @@
 
 **Ver codigo online**
 
-([Link 1](https://www.jdoodle.com/iembed/v0/LgT))
-([Link 2](https://www.jdoodle.com/ia/LgT))
+([Link 1](jdoodle.com/ia/Lj7))
+([Link 2](https://www.jdoodle.com/iembed/v0/Lj7))
 
 ## Integrantes
 - Nicolas Arbelaez
@@ -26,8 +26,10 @@ Al final del programa se muestran las siguientes estadísticas y opciones:
 
 
 ## Main
-<img src="https://imgur.com/exobCDE.png" alt="Main"/>
+<img src="https://imgur.com/UN1Rg9x.png" alt="Main"/>
+
 ## Games
-<img src="https://imgur.com/iCQNakW.png" alt="Game"/>
+<img src="https://imgur.com/78GHUlK.png" alt="Game"/>
+
 ## Player
-<img src="https://imgur.com/CFhdMvV.png" alt="Player"/>
+<img src="https://imgur.com/WzYlZaT.png" alt="Player"/>

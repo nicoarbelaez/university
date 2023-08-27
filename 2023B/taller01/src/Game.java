@@ -19,15 +19,6 @@ public class Game {
         this.players = players;
     }
 
-    /**
-     * Método que inicia la partida
-     * 
-     * PIEDRA(0) / PAPEL(1) = PAPEL(1)
-     * PIEDRA(0) / TIJERA(2) = PIEDRA(0)
-     * PAPEL(1) / TIJERA(2) = TIJERA(2)
-     * 
-     * @return void
-     */
     public void start() {
         byte movePlayer1 = players[0].play();
         byte movePlayer2 = players[1].play();
@@ -45,16 +36,21 @@ public class Game {
     public String toString() {
         String winnerInfo = getWinner();
         String movesInfo = "[" + getMoves() + "]";
-        String str = "+---Partida #" + gameID + "---------+\n"
+        String str = "+---Partida #" + gameID + "--------------------------+\n"
                 + "| Ganador: " + winnerInfo + "\n"
                 + "| " + movesInfo + "\n"
-                + "+-----------------------+";
+                + "+----------------------------------------+";
 
         return str;
     }
 
+    /**
+     * PIEDRA(0) / PAPEL(1) = PAPEL(1)
+     * PIEDRA(0) / TIJERA(2) = PIEDRA(0)
+     * PAPEL(1) / TIJERA(2) = TIJERA(2)
+     */
     private void determineWinner(byte movePlayer1, byte movePlayer2) {
-        winner = (movePlayer1 > movePlayer2) ? players[0] : players[1];
+        winner = (3 + movePlayer1 - movePlayer2) % 3 == 1 ? players[0] : players[1];
         winner.addWin();
     }
 
@@ -82,7 +78,8 @@ public class Game {
     }
 
     public void setMoves(byte movePlayer1, byte movePlayer2) {
-        this.moves = Game.showPlay(movePlayer1) + " vs " + Game.showPlay(movePlayer2);
+        this.moves = players[0].getName() + "<" + Game.showPlay(movePlayer1) + "> VS " + players[1].getName() + "<"
+                + Game.showPlay(movePlayer2) + ">";
     }
 
     public String getMoves() {
@@ -107,7 +104,7 @@ public class Game {
                 str = "Papel";
                 break;
             case Game.SCISSORS:
-                str = "Tijera";
+                str = "Tijeras";
                 break;
         }
         return str;

@@ -7,8 +7,9 @@ public class Main {
         players[0] = new Player("Player 1");
         players[1] = new Player("Player 2");
 
+        System.out.print(ConsoleColorPalette.GREEN); // Cambiar color de la consola
         // Solicitar el número de partidas a jugar
-        System.out.print("¿Cuántas partidas quieres jugar?\n>> ");
+        System.out.print("\n¿Cuántas partidas quieres jugar?\n>> ");
         int gamesToPlay = test();
 
         Game[] games = new Game[gamesToPlay]; // Array de partidas
@@ -43,9 +44,9 @@ public class Main {
 
     // Imprimir información general
     private static String printInfo() {
-        String str = "\n\n+---------------------------------------+\n"
-                + "| PIEDRA, PAPEL O TIJERA | ESTADÍSTICAS |\n"
-                + "+---------------------------------------+\n"
+        String str = ConsoleColorPalette.BLUE + "\n\n+----------------------------------------------+\n"
+                + "| PIEDRA 🪨, PAPEL 📄 O TIJERA ✂️ | ESTADÍSTICAS |\n"
+                + "+----------------------------------------------+\n"
                 + players[0].toString() + "\n"
                 + players[1].toString() + "\n"
                 + "+---------------------+\n"
