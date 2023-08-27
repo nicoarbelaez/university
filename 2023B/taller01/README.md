@@ -6,7 +6,7 @@
 
 **Ver codigo online**
 
-([Link 1](jdoodle.com/ia/Lj7))
+([Link 1](https://www.jdoodle.com/ia/Lj7))
 ([Link 2](https://www.jdoodle.com/iembed/v0/Lj7))
 
 ## Integrantes
