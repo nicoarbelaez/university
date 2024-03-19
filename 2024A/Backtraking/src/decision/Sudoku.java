@@ -1,4 +1,4 @@
-package decisions;
+package decision;
 
 import utils.Color;
 
@@ -14,7 +14,7 @@ public class Sudoku {
     private int sizeOfRegion;
     private int numberOfRegions;
     private long nanoTime;
-    private int leafNodes;
+    private int leafNodes = 1;
     private int[][] board;
     private boolean[][] modifiableCells;
     private Difficulty difficulty;

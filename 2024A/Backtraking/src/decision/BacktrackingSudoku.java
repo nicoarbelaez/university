@@ -1,9 +1,9 @@
-package decisions;
+package decision;
 
 public class BacktrackingSudoku {
     private Sudoku sudoku;
     private long nanoTime = 0;
-    private int leafNodes = 0;
+    private int leafNodes = 1;
 
     public BacktrackingSudoku(Sudoku sudoku) {
         this.sudoku = sudoku;
@@ -30,7 +30,7 @@ public class BacktrackingSudoku {
                 sudoku.undo(row, col);
             }
         }
-        
+
         leafNodes++;
         nanoTime = System.nanoTime() - timeStart;
         return false;

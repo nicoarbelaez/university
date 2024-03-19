@@ -1,4 +1,4 @@
-package decisions;
+package decision;
 
 public enum Difficulty {
     EASY, MEDIUM, HARD, MASTER, EXPERT;
