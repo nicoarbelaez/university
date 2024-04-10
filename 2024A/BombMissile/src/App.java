@@ -1,53 +1,72 @@
+import java.util.HashMap;
+import java.util.Map;
+
 import game.Game;
 import reader.InputReader;
 
 public class App {
+    private static final int NUMBER_OF_TESTS = 500;
+    private static final int DIGIT_COUNT = 3;
 
     @SuppressWarnings("unused")
     public static void main(String[] args) {
-        int digitCount = 3;
         Integer[] imaginedNumber = new Integer[] { 3, 2, 4 };
-        InputReader mockInputReader = new reader.MockInputReader(digitCount);
+        InputReader mockInputReader = new reader.MockInputReader(DIGIT_COUNT);
         InputReader consoleInputReader = new reader.ConsoleInputReader();
 
-        start(mockInputReader, digitCount);
+        start(mockInputReader);
     }
 
-    private static void start(InputReader inputReader, int digitCount) {
-        Game gameMissileBomb = new Game(digitCount, inputReader);
-
-        if (inputReader instanceof reader.MockInputReader) {
-            int numberTest = 1;
-            int[] averageAttempts = new int[numberTest];
-            for (int i = 0; i < numberTest; i++) {
-                System.out.println("===============[Test " + (i + 1) + "]===============");
-                gameMissileBomb.startGame();
-                averageAttempts[i] = gameMissileBomb.getAttempts();
-                gameMissileBomb.resetGame();
-                System.out.println("===============[Test " + (i + 1) + "]===============");
-            }
-            System.out.println("AVERAGE ATTEMPTS: " + getAverageAttempts(averageAttempts));
-            System.out.println("MAX ATTEMPTS: " + getMaxAttempts(averageAttempts));
-        } else {
+    public static void start(InputReader inputReader) {
+        Game gameMissileBomb = new Game(DIGIT_COUNT, inputReader);
+        if (!(inputReader instanceof reader.MockInputReader)) {
             gameMissileBomb.startGame();
+            return;
         }
+
+        Map<Integer, Integer> attemptsPerTest = new HashMap<>();
+        String bannerTest = "===============[Test %d]===============";
+
+        for (int i = 0; i < NUMBER_OF_TESTS; i++) {
+            System.out.println(String.format(bannerTest, (i + 1)));
+
+            gameMissileBomb.startGame();
+            if(attemptsPerTest.get(gameMissileBomb.getAttempts()) == null) {
+                attemptsPerTest.put(gameMissileBomb.getAttempts(), 1);
+            } else {
+                attemptsPerTest.put(gameMissileBomb.getAttempts(), attemptsPerTest.get(gameMissileBomb.getAttempts()) + 1);
+            }
+            gameMissileBomb.resetGame();
+
+            System.out.println(String.format(bannerTest, (i + 1)));
+        }
+
+        System.out.println("AVERAGE ATTEMPTS: " + calculateAverage(attemptsPerTest));
+        System.out.println("MAX ATTEMPTS: " + calculateMax(attemptsPerTest));
+        attemptsPerTest.forEach((k, v) -> System.out.println("Attempts: " + k + " - Count: " + v));
     }
 
-    private static int getAverageAttempts(int[] attempts) {
-        int sum = 0;
-        for (int attempt : attempts) {
-            sum += attempt;
+    private static double calculateAverage(Map<Integer, Integer> attempts) {
+        int totalAttempts = 0;
+        int totalGames = 0;
+
+        for (Map.Entry<Integer, Integer> entry : attempts.entrySet()) {
+            totalAttempts += entry.getKey() * entry.getValue();
+            totalGames += entry.getValue();
         }
-        return sum / attempts.length;
+
+        return (double) totalAttempts / totalGames;
     }
 
-    private static int getMaxAttempts(int[] attempts) {
-        int max = Integer.MIN_VALUE;
-        for (int attempt : attempts) {
-            if (attempt > max) {
-                max = attempt;
+    private static int calculateMax(Map<Integer, Integer> attempts) {
+        int maxAttempts = 0;
+
+        for (Map.Entry<Integer, Integer> entry : attempts.entrySet()) {
+            if (entry.getKey() > maxAttempts) {
+                maxAttempts = entry.getKey();
             }
         }
-        return max;
+
+        return maxAttempts;
     }
 }

@@ -18,3 +18,5 @@ mientras Verdadero:
 
 # Imprime el número secreto
 imprimir("El número secreto es:", numero_secreto)
+
+# Si nos quedamos sin conbinaciones posibles, mostramos al usuario todos los numeros que uso, debera selecionar el primer numero en el cual se equivoco y editarlo con la informacion correcta, y volver a generar la lista de numeros posibles mientras filtro con los numero que fueron anterior al error

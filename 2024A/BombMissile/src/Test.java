@@ -29,7 +29,7 @@ public class Test {
 
         if (fileHandler.fileExists(fileName)) {
             try {
-                possibleNumbers = fileHandler.readFromFile(fileName);
+                possibleNumbers = fileHandler.readFromFileIntegerList(fileName);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -39,7 +39,7 @@ public class Test {
             possibleNumbers.add(new Integer[] { 4, 5, 6 });
             possibleNumbers.add(new Integer[] { 7, 8, 9 });
             try {
-                fileHandler.writeToFile(fileName, possibleNumbers);
+                fileHandler.writeToFileIntegerList(fileName, possibleNumbers);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -52,19 +52,31 @@ public class Test {
 
     private static void testTrackNumber() {
         BombaMisilGuesser bombaMisilGuesser = new BombaMisilGuesser(digitCount);
-        TrackNumber trackNumber = new TrackNumber(new Integer[] { 6, 5, 8 });
+        TrackNumber trackNumber = new TrackNumber(new Integer[] { 8, 7, 1 });
         List<TrackNumber> trackNumbers = new ArrayList<>();
 
-        trackNumbers.add(new TrackNumber(new Integer[] { 4, 2, 1 }));
-        trackNumbers.add(new TrackNumber(new Integer[] { 9, 6, 7 }));
-        trackNumbers.add(new TrackNumber(new Integer[] { 7, 8, 5 }));
-        trackNumbers.add(new TrackNumber(new Integer[] { 0, 7, 8 }));
-        trackNumbers.add(new TrackNumber(new Integer[] { 5, 9, 8 }));
+        Map<Integer, Integer> numberOccurrenceInPossibles = new HashMap<>();
+        Map<Integer, Integer[]> numberPositionOccurrenceInPossibles = new HashMap<>();
+        Map<Integer, Integer> numberOccurrenceInAttempts = new HashMap<>();
+        Map<Integer, Integer[]> numberPositionOccurrenceInAttempts = new HashMap<>();
+
+        trackNumbers.add(new TrackNumber(new Integer[] { 0, 7, 1 }));
+        trackNumbers.add(new TrackNumber(new Integer[] { 0, 7, 9 }));
+        trackNumbers.add(new TrackNumber(new Integer[] { 0, 4, 1 }));
+        trackNumbers.add(new TrackNumber(new Integer[] { 2, 7, 1 }));
+        // trackNumbers.add(new TrackNumber(new Integer[] { 4, 7, 1 }));
+        // trackNumbers.add(new TrackNumber(new Integer[] { 3, 7, 1 }));
+        // trackNumbers.add(new TrackNumber(new Integer[] { 5, 7, 1 }));
         for (TrackNumber num : trackNumbers) {
-            printPossibleNumbers(bombaMisilGuesser,
+            printPossibleNumbers(
+                    bombaMisilGuesser,
                     num,
                     GameUtils.getMissile(trackNumber.getDigits(), num.getDigits()),
-                    GameUtils.getBomb(trackNumber.getDigits(), num.getDigits()));
+                    GameUtils.getBomb(trackNumber.getDigits(), num.getDigits()),
+                    numberOccurrenceInPossibles,
+                    numberPositionOccurrenceInPossibles,
+                    numberOccurrenceInAttempts,
+                    numberPositionOccurrenceInAttempts);
         }
         System.out.println(Arrays.toString(trackNumber.getDigits()));
     }
@@ -92,26 +104,64 @@ public class Test {
         System.out.println("LAST\n" + tree.getLastNode());
     }
 
-    private static void printPossibleNumbers(BombaMisilGuesser bmg, TrackNumber trackNumber, int missile, int bomb) {
+    private static void printPossibleNumbers(
+            BombaMisilGuesser bmg,
+            TrackNumber trackNumber,
+            int missile,
+            int bomb,
+            Map<Integer, Integer> numberOccurrenceInPossibles,
+            Map<Integer, Integer[]> numberPositionOccurrenceInPossibles,
+            Map<Integer, Integer> numberOccurrenceInAttempts,
+            Map<Integer, Integer[]> numberPositionOccurrenceInAttempts) {
         bmg.updateTrackNumber(trackNumber, missile, bomb);
         System.out.println(trackNumber.toString());
-        for (Integer[] num : bmg.getPossibleNumbers()) {
-            System.out.println("(/\\) " + Arrays.toString(num));
-        }
+        bmg.getPossibleNumbers().forEach(num -> System.out.println("(/\\) " + Arrays.toString(num)));
 
-        Map<Integer, Integer> digitCounts = new HashMap<>();
         for (Integer[] num : bmg.getPossibleNumbers()) {
-            for (Integer digits : num) {
-                if (digitCounts.get(digits) == null) {
-                    digitCounts.put(digits, 1);
-                } else {
-                    digitCounts.put(digits, digitCounts.get(digits) + 1);
-                }
+            numberOccurrence(num, numberOccurrenceInPossibles);
+        }
+        System.out.println("=====[numberOccurrenceInPossibles]=====");
+        numberOccurrenceInPossibles.forEach((k, v) -> System.out.println(k + " -> " + v));
+
+        for (Integer[] num : bmg.getPossibleNumbers()) {
+            numberPositionOccurrence(num, numberPositionOccurrenceInPossibles);
+        }
+        System.out.println("=====[numberPositionOccurrenceInPossibles]=====");
+        numberPositionOccurrenceInPossibles
+                .forEach((k, v) -> System.out.println(k + " -> " + Arrays.toString(v)));
+
+        numberOccurrence(trackNumber.getDigits(), numberOccurrenceInAttempts);
+        System.out.println("=====[numberOccurrenceInAttempts]=====");
+        numberOccurrenceInAttempts.forEach((k, v) -> System.out.println(k + " -> " + v));
+
+        numberPositionOccurrence(trackNumber.getDigits(), numberPositionOccurrenceInAttempts);
+        System.out.println("=====[numberPositionOccurrenceInAttempts]=====");
+        numberPositionOccurrenceInAttempts
+                .forEach((k, v) -> System.out.println(k + " -> " + Arrays.toString(v)));
+        System.out.println("--------------------");
+    }
+
+    private static void numberOccurrence(Integer[] num, Map<Integer, Integer> numberOccurrence) {
+        for (Integer digits : num) {
+            if (numberOccurrence.get(digits) == null) {
+                numberOccurrence.put(digits, 1);
+            } else {
+                numberOccurrence.put(digits, numberOccurrence.get(digits) + 1);
             }
         }
+    }
 
-        digitCounts.forEach((k, v) -> {
-            System.out.println(k + " -> " + v);
-        });
+    private static void numberPositionOccurrence(Integer[] num, Map<Integer, Integer[]> numberPositionOccurrence) {
+        for (int i = 0; i < num.length; i++) {
+            if (numberPositionOccurrence.get(num[i]) == null) {
+                Integer[] value = new Integer[] { 0, 0, 0 };
+                value[i] = 1;
+                numberPositionOccurrence.put(num[i], value);
+            } else {
+                Integer[] value = numberPositionOccurrence.get(num[i]);
+                value[i] = value[i] + 1;
+                numberPositionOccurrence.put(num[i], value);
+            }
+        }
     }
 }

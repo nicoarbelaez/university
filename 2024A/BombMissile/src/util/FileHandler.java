@@ -15,7 +15,7 @@ public class FileHandler {
         return file.exists();
     }
 
-    public List<Integer[]> readFromFile(String fileName) throws IOException {
+    public List<Integer[]> readFromFileIntegerList(String fileName) throws IOException {
         File file = new File(directoryPath + fileName);
         BufferedReader br = new BufferedReader(new FileReader(file));
         List<Integer[]> numbers = new ArrayList<>();
@@ -30,7 +30,7 @@ public class FileHandler {
         return numbers;
     }
 
-    public void writeToFile(String fileName, List<Integer[]> numbers) throws IOException {
+    public void writeToFileIntegerList(String fileName, List<Integer[]> numbers) throws IOException {
         File file = new File(directoryPath + fileName);
         BufferedWriter bw = new BufferedWriter(new FileWriter(file));
         for (Integer[] number : numbers) {
@@ -40,6 +40,18 @@ public class FileHandler {
                     .replace(" ", ""));
             bw.newLine();
         }
+        bw.close();
+    }
+
+    public void writeToFile(String fileName, int[][] numbers) throws IOException {
+        File file = new File(directoryPath + fileName);
+        BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+
+        for (int[] number : numbers) {
+            bw.write(number[0] + "," + number[1]);
+            bw.newLine();
+        }
+
         bw.close();
     }
 }

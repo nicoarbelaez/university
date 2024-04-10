@@ -22,6 +22,35 @@ public class RandomNumberGenerator implements NumberGenerator {
 
     @Override
     public Integer[] generate() {
+        filterDigitPositionNotRepeat(); // TODO: Does not make sense to filter the numbers
+
+        int randomIndex = NumberUtils.generateRandomNumber(0, possibleNumbers.size() - 1);
+        Integer[] number = possibleNumbers.get(randomIndex);
+        return number;
+    }
+
+    @Override
+    public void updateInformation(List<Integer[]> possibleNumbers, List<TrackNumber> triedNumbers) {
+        this.possibleNumbers = possibleNumbers;
+        this.triedNumbers = triedNumbers;
+        updatePositionDigits();
+        // positionDigits.forEach((k, v) -> System.out.println("<P> " + k + " -> " +
+        // Arrays.toString(v))); // TODO: Remove
+    }
+
+    private void updatePositionDigits() {
+        for (Integer[] digits : triedNumbers.stream().map(e -> e.getDigits()).collect(Collectors.toList())) {
+            for (int i = 0; i < digitCount; i++) {
+                int digit = digits[i];
+                if (!positionDigits.containsKey(digit)) {
+                    positionDigits.put(digit, new boolean[digitCount]);
+                }
+                positionDigits.get(digit)[i] = true;
+            }
+        }
+    }
+
+    private void filterDigitPositionNotRepeat() {
         boolean isValid = false;
         int count = digitCount;
         List<Integer[]> validNumbers = null;
@@ -41,9 +70,6 @@ public class RandomNumberGenerator implements NumberGenerator {
         }
 
         possibleNumbers = validNumbers;
-        int randomIndex = NumberUtils.generateRandomNumber(0, possibleNumbers.size() - 1);
-        Integer[] number = possibleNumbers.get(randomIndex);
-        return number;
     }
 
     private boolean isValidNumber(Integer[] digits, int count) {
@@ -59,25 +85,5 @@ public class RandomNumberGenerator implements NumberGenerator {
             countValid++;
         }
         return countValid >= count;
-    }
-
-    @Override
-    public void updateInformation(List<Integer[]> possibleNumbers, List<TrackNumber> triedNumbers) {
-        this.possibleNumbers = possibleNumbers;
-        this.triedNumbers = triedNumbers;
-        updatePositionDigits();
-        // positionDigits.forEach((k, v) -> System.out.println("<P> " + k + " -> " + Arrays.toString(v))); // TODO: Remove
-    }
-
-    private void updatePositionDigits() {
-        for (Integer[] digits : triedNumbers.stream().map(e -> e.getDigits()).collect(Collectors.toList())) {
-            for (int i = 0; i < digitCount; i++) {
-                int digit = digits[i];
-                if (!positionDigits.containsKey(digit)) {
-                    positionDigits.put(digit, new boolean[digitCount]);
-                }
-                positionDigits.get(digit)[i] = true;
-            }
-        }
     }
 }

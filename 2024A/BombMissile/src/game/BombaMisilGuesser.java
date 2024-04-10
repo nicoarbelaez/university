@@ -19,6 +19,8 @@ import util.GameUtils;
  * and determines if the player number has been found.
  */
 public class BombaMisilGuesser {
+    private static final String FILE_PATH = "resources/data/";
+    private static final String FILE_NAME = "possible_numbers%d.csv";
     private final int digitCount;
     private final List<TrackNumber> triedNumbers;
     private final NumberGenerator numberGenerator;
@@ -33,21 +35,21 @@ public class BombaMisilGuesser {
         this.numberGenerator = new RandomNumberGenerator();
         this.numberGenerator.initialize(digitCount);
 
-        this.fileHandler = new FileHandler("resources/data/");
+        this.fileHandler = new FileHandler(FILE_PATH);
         this.playerNumber = null;
 
-        String fileName = "possible_numbers" + digitCount + ".txt";
+        String fileName = String.format(FILE_NAME, digitCount);
         if (!fileHandler.fileExists(fileName)) {
             this.possibleNumbers = NumberGenerator.generateAllPossibleNumbers(digitCount);
             try {
-                fileHandler.writeToFile(fileName, this.possibleNumbers);
+                fileHandler.writeToFileIntegerList(fileName, this.possibleNumbers);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
         
         try {
-            this.possibleNumbers = fileHandler.readFromFile(fileName);
+            this.possibleNumbers = fileHandler.readFromFileIntegerList(fileName);
         } catch (IOException e) {
             e.printStackTrace();
         }
