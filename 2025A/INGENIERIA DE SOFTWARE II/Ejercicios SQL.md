@@ -158,8 +158,6 @@ El ejecutivo solicita un reporte comparativo de ventas por proveedor. Se requier
 | Universidad libre     | 1             | 121800       | 121800         |
 | Universidad del valle | 2             | 397280       | 198640         |
 
-**Posible solución:**
-
 ---
 
 ## Tema 2: Vistas Virtuales y Materializadas
@@ -187,8 +185,6 @@ Crear una vista virtual llamada `V_Ventas_Resumen` que consolide la información
 | 96101117  | 1-may-17       | USC                   | 399300      | PAG-06      |
 | 96101118  | 30-may-17      | Universidad del valle | 265280      | PAG-07      |
 
-**Posible solución:**
-
 ---
 
 ### Ejercicio 2
@@ -209,8 +205,6 @@ Crear una vista virtual llamada `V_Proveedor_Ventas` que muestre, para cada prov
 | USC                   | Cali   | 2       | 635190       |
 | Universidad libre     | Cali   | 1       | 121800       |
 | Universidad del valle | Cali   | 2       | 397280       |
-
-**Posible solución:**
 
 ---
 
@@ -247,8 +241,6 @@ Crear una vista materializada llamada `MV_Ventas_Detalle` que almacene el detall
 | 96101118  | 1            | EAM4356 | SERVICIOS          | 32       | 3290   | 105280      |
 | 96101118  | 2            | EAM4357 | SERVICIOS          | 20       | 8000   | 160000      |
 
-**Posible solución:**
-
 ---
 
 ### Ejercicio 4
@@ -273,8 +265,6 @@ Crear una vista materializada llamada `MV_Articulos_Stock` que muestre los artí
 | EAM4361 | MATERIA PRIMA      | 2            | 120            |
 | EAM4362 | SERVICIOS          | 1            | 100            |
 
-**Posible solución:**
-
 ---
 
 ## Tema 3: Funciones
@@ -289,8 +279,6 @@ Crear una función llamada `FN_TOTAL_ORDEN` que reciba como parámetro el _id_ d
 | id_oc | Total_Orden |
 | ----- | ----------- |
 | 56789 | 386400      |
-
-**Posible solución:**
 
 ---
 
@@ -309,8 +297,6 @@ Crear una función que determine el estado de un proveedor basado en su total ac
 | ------- | ------------- |
 | 12345   | Alto          |
 
-**Posible solución:**
-
 ---
 
 ### Ejercicio 3
@@ -324,8 +310,6 @@ Crear una función que reciba una fecha como parámetro y retorne el número de 
 | ------------- | ------------------ |
 | 2-ene-17      | 364                |
 
-**Posible solución:**
-
 ---
 
 ### Ejercicio 4
@@ -338,8 +322,6 @@ Crear una función que, dada la categoría de un artículo, retorne el total acu
 | Categoria | Total_Ventas |
 | --------- | ------------ |
 | SERVICIOS | 397          |
-
-**Posible solución:**
 
 ---
 
@@ -356,8 +338,6 @@ Crear un índice sobre la columna `nit` de la tabla **PROVEEDORES** para optimiz
 | ------------------- | ----------------------------------------------------- |
 | IDX_PROVEEDORES_NIT | Índice sobre la columna `nit` de la tabla PROVEEDORES |
 
-**Posible solución:**
-
 ---
 
 ### Ejercicio 2
@@ -371,8 +351,6 @@ Crear un índice compuesto sobre las columnas `fecha_creacion` y `moneda` de la 
 | ------------------- | ----------------------------------------------------------------------------- |
 | IDX_OC_FECHA_MONEDA | Índice compuesto sobre `fecha_creacion` y `moneda` en la tabla ORDENES_COMPRA |
 
-**Posible solución:**
-
 ---
 
 ### Ejercicio 3
@@ -385,8 +363,6 @@ Crear un índice en la tabla **LINEAS_ORDENES** sobre la columna `id_art` para a
 | Objeto                   | Descripción                                                 |
 | ------------------------ | ----------------------------------------------------------- |
 | IDX_LINEAS_ORDENES_IDART | Índice sobre la columna `id_art` de la tabla LINEAS_ORDENES |
-
-**Posible solución:**
 
 ---
 
@@ -441,8 +417,6 @@ Crear un trigger que, antes de actualizar el estado de un pago, registre en una 
 | id_pago | Valor_Anterior | Valor_Nuevo | Fecha_Modificacion |
 | ------- | -------------- | ----------- | ------------------ |
 | 123     | 386640         | 400000      | 202X-XX-XX         |
-
-**Posible solución:**
 
 ---
 
